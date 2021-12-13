@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class CountryController extends Controller
 {
+
+    public function show(Country $country)
+    {
+        return new CountryResource($country);
+    }
+
     public function store()
     {
         $data = request()->validate([

@@ -43,4 +43,26 @@ class CountryTest extends TestCase
                 ]
             ]);
     }
+
+    /** @test */
+    public function single_country_can_be_fetched()
+    {
+        $this->withoutExceptionHandling();
+
+        $country = Country::factory()->create();
+
+        $this->get('/api/countries/'.$country->id)
+            ->assertOk()
+            ->assertJson([
+                'data' => [
+                    'type' => 'countries',
+                    'country_id' => $country->id,
+                    'attributes' => [
+                        'title' => $country->title,
+                        'iso_code' => $country->iso_code,
+                    ]
+                ]
+            ]);
+
+    }
 }
