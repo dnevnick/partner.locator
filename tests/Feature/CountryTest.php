@@ -65,4 +65,40 @@ class CountryTest extends TestCase
             ]);
 
     }
+
+    /** @test */
+    public function multiple_countries_can_be_fetched()
+    {
+        $this->withoutExceptionHandling();
+
+        $countries = Country::factory()->count(2)->create();
+
+        $this->get('/api/countries')
+            ->assertOk()
+            ->assertJson([
+                'data' => [
+                    [
+                        'data' => [
+                            'type' => 'countries',
+                            'country_id' => $countries->first()->id,
+                            'attributes' => [
+                                'title' => $countries->first()->title,
+                                'iso_code' => $countries->first()->iso_code,
+                            ]
+                        ]
+                    ],
+                    [
+                        'data' => [
+                            'type' => 'countries',
+                            'country_id' => $countries->last()->id,
+                            'attributes' => [
+                                'title' => $countries->last()->title,
+                                'iso_code' => $countries->last()->iso_code,
+                            ]
+                        ]
+                    ],
+                ]
+            ]);
+
+    }
 }
