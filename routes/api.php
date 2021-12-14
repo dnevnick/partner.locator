@@ -4,6 +4,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\StateController;
+use App\Http\Controllers\PartnerTypeController;
+use App\Http\Controllers\PartnerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,8 @@ use App\Http\Controllers\StateController;
 Route::apiResources([
     'countries'=> CountryController::class,
     'states'=> StateController::class,
+    'partner-types'=> PartnerTypeController::class,
+    'partners'=> PartnerController::class,
 ]);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
