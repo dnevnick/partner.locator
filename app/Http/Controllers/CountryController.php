@@ -21,15 +21,12 @@ class CountryController extends Controller
 
     public function store()
     {
-        $data = request()->validate([
-            'data.attributes.title' => 'required',
-            'data.attributes.iso_code' => 'required',
+        $validated = request()->validate([
+            'data.attributes.name' => 'required',
+            'data.attributes.short_name' => 'required',
         ]);
 
-        $country = Country::create([
-            'title' => $data['data']['attributes']['title'],
-            'iso_code' => $data['data']['attributes']['iso_code']
-        ]);
+        $country = Country::create($validated['data']['attributes']);
 
         return new CountryResource($country);
 

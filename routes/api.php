@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CountryController;
+use App\Http\Controllers\StateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,7 @@ use App\Http\Controllers\CountryController;
 */
 Route::apiResources([
     'countries'=> CountryController::class,
+    'states'=> StateController::class,
 ]);
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

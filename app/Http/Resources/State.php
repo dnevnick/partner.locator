@@ -3,8 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\Country as CountryResource;
 
-class Country extends JsonResource
+class State extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,13 +17,15 @@ class Country extends JsonResource
     {
         return [
             'data' => [
-                'type' => 'countries',
-                'country_id' => $this->id,
+                'type' => 'states',
+                'state_id' => $this->id,
                 'attributes' => [
                     'name' => $this->name,
                     'short_name' => $this->short_name,
+                ],
+                'relationships' => [
+                    'country' => new CountryResource($this->country),
                 ]
-
             ]
         ];
     }

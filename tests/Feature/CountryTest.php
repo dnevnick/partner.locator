@@ -18,8 +18,8 @@ class CountryTest extends TestCase
         $response = $this->post('/api/countries', [
             'data' => [
                 'attributes' => [
-                    'title' => 'Россия',
-                    'iso_code' => 'RU'
+                    'name' => 'Россия',
+                    'short_name' => 'RU'
                 ]
             ]
         ]);
@@ -28,8 +28,8 @@ class CountryTest extends TestCase
 
         $country = Country::first();
 
-        $this->assertEquals('Россия', $country-> title);
-        $this->assertEquals('RU', $country->iso_code);
+        $this->assertEquals('Россия', $country->name);
+        $this->assertEquals('RU', $country->short_name);
 
         $response->assertStatus(201)
             ->assertJson([
@@ -37,8 +37,8 @@ class CountryTest extends TestCase
                     'type' => 'countries',
                     'country_id' => $country->id,
                     'attributes' => [
-                        'title' => $country->title,
-                        'iso_code' => $country->iso_code,
+                        'name' => $country->name,
+                        'short_name' => $country->short_name,
                     ]
                 ]
             ]);
@@ -58,8 +58,8 @@ class CountryTest extends TestCase
                     'type' => 'countries',
                     'country_id' => $country->id,
                     'attributes' => [
-                        'title' => $country->title,
-                        'iso_code' => $country->iso_code,
+                        'name' => $country->name,
+                        'short_name' => $country->short_name,
                     ]
                 ]
             ]);
@@ -82,8 +82,8 @@ class CountryTest extends TestCase
                             'type' => 'countries',
                             'country_id' => $countries->first()->id,
                             'attributes' => [
-                                'title' => $countries->first()->title,
-                                'iso_code' => $countries->first()->iso_code,
+                                'name' => $countries->first()->name,
+                                'short_name' => $countries->first()->short_name,
                             ]
                         ]
                     ],
@@ -92,8 +92,8 @@ class CountryTest extends TestCase
                             'type' => 'countries',
                             'country_id' => $countries->last()->id,
                             'attributes' => [
-                                'title' => $countries->last()->title,
-                                'iso_code' => $countries->last()->iso_code,
+                                'name' => $countries->last()->name,
+                                'short_name' => $countries->last()->short_name,
                             ]
                         ]
                     ],
