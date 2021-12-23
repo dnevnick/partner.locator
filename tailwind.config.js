@@ -11,7 +11,17 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                sans: ['OpenSans', ...defaultTheme.fontFamily.sans],
+            },
+            fontSize: {
+                '10-15': ['10px', '15px'],
+            },
+            colors:{
+                'gray-main':'#5c5c5c',
+            },
+            spacing: {
+                '22.5': '90px',
+                '72': '288px'
             },
         },
     },

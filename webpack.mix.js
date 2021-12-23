@@ -20,6 +20,9 @@ mix.js('resources/js/app.js', 'public/js')
     ])
     .webpackConfig(require('./webpack.config'));
 
+//Подгружаем изображения
+mix.copyDirectory('resources/images', 'public/storage/images');
+
 if (mix.inProduction()) {
     mix.version();
 }
